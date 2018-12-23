@@ -128,7 +128,8 @@ endfunction "}}}
 function! cmp#pre_complete(failed_insert) abort "{{{
   let s:log_index = <SID>timenow_ms()
 
-  if !pumvisible()
+  if !pumvisible() && !get(g:, 'complete_parameter_enable_event_completion', v:false)
+    echom 'false'
     return <SID>failed_event(a:failed_insert)
   endif
 
